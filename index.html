@@ -1,567 +1,440 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI-X Nexus | القوة المطلقة للذكاء الاصطناعي</title>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#6366f1',
-                        secondary: '#a855f7',
-                        accent: '#f472b6',
-                        dark: '#030712',
-                        surface: '#0b1120',
-                        brand: {
-                            50: '#eef2ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    },
-                    fontFamily: {
-                        cairo: ['Cairo', 'sans-serif'],
-                        jakarta: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    animation: {
-                        'slow-spin': 'spin 12s linear infinite',
-                        'blob': 'blob 7s infinite',
-                        'float': 'float 4s ease-in-out infinite',
-                        'shimmer': 'shimmer 2s linear infinite',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        shimmer: {
-                            '100%': { transform: 'translateX(100%)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <title>منصة نور الإسلام | القرآن الكريم كاملاً</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Cairo', sans-serif; background-color: #030712; color: #94a3b8; }
-        .glass { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.08); }
-        .pro-border { border: 2px solid transparent; background-image: linear-gradient(#0b1120, #0b1120), linear-gradient(to right, #6366f1, #a855f7, #f472b6); background-origin: border-box; background-clip: content-box, border-box; }
-        .gradient-text { background: linear-gradient(135deg, #fff 0%, #94a3b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .glow-primary { box-shadow: 0 0 50px -12px rgba(99, 102, 241, 0.5); }
-        .custom-scrollbar::-webkit-scrollbar { width: 5px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #030712; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        [x-cloak] { display: none !important; }
+        :root {
+            --primary: #165230;
+            --gold: #C9A84C;
+            --bg: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text: #2D3436;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+        .dark-mode {
+            --bg: #121212;
+            --card-bg: #1E1E1E;
+            --text: #E0E0E0;
+            --primary: #2A9D5C;
+            --shadow: rgba(0,0,0,0.4);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; transition: background 0.3s, color 0.3s; }
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            user-select: none;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(-45deg, #1e3a8a, #4338ca, #165230, #0f766e);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 20px var(--shadow);
+            border-bottom: 4px solid var(--gold);
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px; left: 20px;
+            z-index: 10005;
+            background: var(--gold);
+            border: 2px solid white;
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 25px;
+            border-radius: 50px;
+            border: none;
+            font-family: 'Cairo';
+            font-size: 1rem;
+            outline: none;
+            background: white;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
+        
+        .surah-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .surah-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px var(--shadow);
+            border: 1px solid transparent;
+        }
+        .surah-card:hover { transform: translateY(-5px); border-color: var(--gold); }
+        .surah-card h3 { font-family: 'Amiri'; font-size: 1.8rem; color: var(--primary); }
+
+        #reciters-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            padding: 10px 0;
+        }
+
+        .reciter-item {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            border-right: 6px solid var(--primary);
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .reciter-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+
+        #player-bar {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: var(--card-bg);
+            border-top: 3px solid var(--gold);
+            padding: 10px 20px;
+            display: none;
+            z-index: 10002;
+            box-shadow: 0 -5px 20px var(--shadow);
+        }
+
+        .audio-controls {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .player-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .download-btn {
+            background: #2d3436;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        /* باقى الاستايلات كما هي */
+        #quran-viewer { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 10000; overflow-y: auto; padding: 100px 20px 150px; }
+        .quran-content { font-family: 'Amiri'; font-size: 2.4rem; line-height: 2.5; text-align: center; max-width: 850px; margin: 0 auto; }
+        .ayah-unit { padding: 0 8px; border-radius: 5px; cursor: pointer; }
+        .is-hidden { background: #ccc !important; color: #ccc !important; }
+        .reading-controls { position: fixed; bottom: 100px; right: 30px; background: var(--primary); color: white; padding: 15px; border-radius: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 10001; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 20000; align-items: center; justify-content: center; }
+        .modal-content { background: var(--card-bg); padding: 30px; border-radius: 25px; width: 90%; max-width: 500px; text-align: center; }
+        .mode-btn { width: 100%; padding: 15px; margin: 10px 0; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; color: white; }
+        .btn-close { position: fixed; top: 25px; right: 25px; background: #ff4757; color: white; border: none; padding: 10px 20px; border-radius: 50px; z-index: 10003; cursor: pointer; }
+        .tafsir-box { position: fixed; bottom: -100%; left: 0; right: 0; background: var(--card-bg); padding: 30px; border-top-left-radius: 30px; border-top-right-radius: 30px; box-shadow: 0 -10px 40px rgba(0,0,0,0.3); z-index: 100000; transition: 0.5s; max-height: 60vh; overflow-y: auto; }
+        .tafsir-box.active { bottom: 0; }
     </style>
 </head>
-<body class="custom-scrollbar overflow-x-hidden" x-data="{ billing: 'monthly', scrolled: false, mobileMenu: false }" @scroll.window="scrolled = (window.pageYOffset > 50)">
+<body>
 
-    <nav :class="scrolled ? 'glass py-3' : 'bg-transparent py-6'" class="fixed w-full z-[1000] transition-all duration-500 px-6 lg:px-20">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-12">
-                <a href="#" class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-500/20">
-                        <i class="fas fa-brain text-white text-xl"></i>
-                    </div>
-                    <span class="text-2xl font-900 text-white tracking-tighter uppercase font-jakarta">AI-X <span class="text-brand-500">Nexus</span></span>
-                </a>
-                <div class="hidden lg:flex items-center gap-10 font-600 text-sm tracking-wide">
-                    <a href="#features" class="hover:text-white transition">القدرات</a>
-                    <a href="#dashboard" class="hover:text-white transition">التجربة</a>
-                    <a href="#pricing" class="hover:text-white transition">الأسعار</a>
-                    <a href="#faq" class="hover:text-white transition">الأسئلة</a>
-                </div>
+<button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+<header>
+    <h1>نور الإسلام</h1>
+    <p>بوابتك المتكاملة لتلاوة وحفظ وفهم القرآن الكريم</p>
+    <div class="search-container">
+        <input type="text" class="search-input" id="global-search" placeholder="  ابحث عن سورة ...." oninput="filterSurahs()">
+    </div>
+</header>
+
+<div class="container" id="main-ui">
+    <div class="surah-grid" id="grid"></div>
+</div>
+
+<div class="modal" id="mode-modal">
+    <div class="modal-content">
+        <h2 id="m-title" style="margin-bottom:20px;">اسم السورة</h2>
+        <button class="mode-btn" style="background:#165230" onclick="launch('read')">📖 وضع القراءة والتفسير</button>
+        <button class="mode-btn" style="background:#34495e" onclick="launch('mem')">🧠 وضع الحفظ التفاعلي</button>
+        <button class="mode-btn" style="background:#C9A84C" onclick="launch('listen')">🎧 وضع الاستماع</button>
+        <button onclick="closeModal()" style="background:none; border:none; color:#888; cursor:pointer; margin-top:10px;">إلغاء</button>
+    </div>
+</div>
+
+<div id="quran-viewer">
+    <button class="btn-close" onclick="exitView()">خروج ✖</button>
+    <div id="quran-render" class="quran-content"></div>
+    <div class="reading-controls">
+        <label style="font-size: 0.8rem;">التمرير التلقائي</label>
+        <select id="scroll-speed" onchange="initScroll()" style="background:rgba(255,255,255,0.2); color:white; border:1px solid white; padding:5px; border-radius:5px;">
+            <option value="0">متوقف</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+        </select>
+    </div>
+</div>
+
+<div id="reciters-view" class="container" style="display:none;">
+    <button class="btn-close" onclick="exitView()">عودة 🔙</button>
+    <h2 id="l-title" style="text-align:center; margin-bottom:20px;">قائمة القراء</h2>
+    <input type="text" class="search-input" id="reciter-search" placeholder="ابحث عن قارئ..." oninput="filterReciters()" style="margin-bottom:20px;">
+    <div id="reciters-list"></div>
+</div>
+
+<div id="player-bar">
+    <div class="audio-controls">
+        <div class="player-info">
+            <div>
+                <h4 id="p-name">اسم القارئ</h4>
+                <p id="p-desc" style="font-size:0.8rem; color:var(--gold)">الرواية</p>
             </div>
-            <div class="flex items-center gap-5">
-                <a href="#" class="hidden sm:block text-sm font-bold text-white/70 hover:text-white transition">تسجيل الدخول</a>
-                <a href="#pricing" class="bg-white text-dark px-7 py-2.5 rounded-full font-800 text-sm hover:bg-brand-500 hover:text-white transition shadow-xl transform active:scale-95">
-                    ابدأ الآن مجاناً
-                </a>
-                <button @click="mobileMenu = !mobileMenu" class="lg:hidden text-white"><i class="fas fa-bars-staggered text-2xl"></i></button>
+            <div style="display:flex; gap:10px; align-items:center;">
+                <a id="download-link" href="#" download class="download-btn">تحميل MP3 📥</a>
+                <button id="master-play" onclick="toggleAudio()" style="background:var(--primary); color:white; border:none; width:45px; height:45px; border-radius:50%; cursor:pointer;">▶</button>
             </div>
         </div>
-    </nav>
-
-    <div x-show="mobileMenu" x-transition x-cloak class="fixed inset-0 z-[1100] bg-dark flex flex-col p-10 lg:hidden">
-        <div class="flex justify-between items-center mb-12">
-            <span class="text-2xl font-900 text-white font-jakarta">AI-X</span>
-            <button @click="mobileMenu = false" class="text-white text-3xl"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="space-y-8 text-center">
-            <a href="#features" @click="mobileMenu = false" class="block text-2xl font-bold text-white">القدرات</a>
-            <a href="#pricing" @click="mobileMenu = false" class="block text-2xl font-bold text-white">الأسعار</a>
-            <a href="#faq" @click="mobileMenu = false" class="block text-2xl font-bold text-white">الأسئلة الشائعة</a>
-            <div class="pt-10 space-y-4">
-                <button class="w-full bg-brand-600 py-4 rounded-2xl font-bold text-white">إنشاء حساب</button>
-                <button class="w-full border border-white/10 py-4 rounded-2xl text-white">دخول</button>
-            </div>
+        <div class="progress-container">
+            <span id="current-time" style="font-size:0.8rem">0:00</span>
+            <input type="range" id="seek-slider" value="0" step="1">
+            <span id="total-duration" style="font-size:0.8rem">0:00</span>
         </div>
     </div>
+    <audio id="audio-engine"></audio>
+</div>
 
-    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div class="absolute top-1/4 -right-20 w-[500px] h-[500px] bg-brand-500/20 rounded-full blur-[120px] animate-blob"></div>
-        <div class="absolute bottom-1/4 -left-20 w-[500px] h-[500px] bg-accent/10 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
+<div id="tafsir-panel" class="tafsir-box">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+        <h3 style="color:var(--gold)">التفسير الميسر</h3>
+        <button onclick="closeTafsir()" style="background:none; border:none; font-size:1.5rem; cursor:pointer;">✕</button>
+    </div>
+    <p id="tafsir-text" style="line-height:1.8; font-size:1.2rem;"></p>
+</div>
+
+<script>
+    let surahs = [];
+    let reciters = [];
+    let activeSurah = null;
+    let scrollInterval = null;
+
+    // وظيفة تنظيف النصوص للبحث الذكي
+    function normalizeText(text) {
+        return text
+            .replace(/[\u064B-\u065F]/g, "") // حذف التشكيل
+            .replace(/[أإآ]/g, "ا")
+            .replace(/ة/g, "ه")
+            .replace(/[ىي]/g, "ي")
+            .trim();
+    }
+
+    async function startApp() {
+        try {
+            const sRes = await fetch('https://api.alquran.cloud/v1/surah');
+            const sData = await sRes.json();
+            surahs = sData.data;
+            renderSurahs(surahs);
+
+            const rRes = await fetch('https://mp3quran.net/api/v3/reciters?language=ar');
+            const rData = await rRes.json();
+            reciters = rData.reciters;
+        } catch (e) { console.error("Error loading data"); }
+    }
+
+    function renderSurahs(list) {
+        document.getElementById('grid').innerHTML = list.map(s => `
+            <div class="surah-card" onclick="openOptions(${s.number})">
+                <h3>${s.name}</h3>
+                <p>آياتها: ${s.numberOfAyahs}</p>
+            </div>
+        `).join('');
+    }
+
+    function filterSurahs() {
+        const query = normalizeText(document.getElementById('global-search').value);
+        const filtered = surahs.filter(s => normalizeText(s.name).includes(query));
+        renderSurahs(filtered);
+    }
+
+    function openOptions(num) {
+        activeSurah = surahs.find(s => s.number === num);
+        document.getElementById('m-title').innerText = activeSurah.name;
+        document.getElementById('mode-modal').style.display = 'flex';
+    }
+
+    function closeModal() { document.getElementById('mode-modal').style.display = 'none'; }
+
+    function launch(mode) {
+        closeModal();
+        if(mode === 'listen') {
+            document.getElementById('main-ui').style.display = 'none';
+            document.getElementById('reciters-view').style.display = 'block';
+            renderReciters(reciters.slice(0, 50));
+        } else {
+            showReader(mode);
+        }
+    }
+
+    async function showReader(mode) {
+        document.getElementById('quran-viewer').style.display = 'block';
+        const render = document.getElementById('quran-render');
+        render.innerHTML = "جاري التحميل...";
+        const res = await fetch(`https://api.alquran.cloud/v1/surah/${activeSurah.number}`);
+        const data = await res.json();
         
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center space-y-10 max-w-5xl mx-auto">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-white/5 animate-float">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-                    </span>
-                    <span class="text-xs font-800 text-white tracking-widest uppercase">الجيل القادم من المحركات العصبية</span>
-                </div>
-                
-                <h1 class="text-5xl lg:text-8xl font-900 leading-[1.1] text-white tracking-tighter">
-                    تخطَّ حدود <span class="italic font-light opacity-50">الإبداع</span> بلمسة <br> 
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 via-secondary to-accent">ذكاء اصطناعي خارق</span>
-                </h1>
-                
-                <p class="text-xl lg:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
-                    Nexus هو المحرك الأكثر قوة في العالم، مصمم لفهم أعقد السياقات اللغوية، توليد الكود، وتحليل البيانات الضخمة في أجزاء من الثانية.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row justify-center gap-6 pt-6">
-                    <button class="bg-brand-600 px-12 py-5 rounded-2xl text-white text-xl font-900 hover:bg-brand-700 transition shadow-2xl shadow-brand-500/30 flex items-center justify-center gap-3 group">
-                        ابدأ تجربتك المجانية 
-                        <i class="fas fa-arrow-left group-hover:-translate-x-2 transition"></i>
-                    </button>
-                    <button class="glass px-12 py-5 rounded-2xl text-white text-xl font-800 hover:bg-white/5 transition flex items-center justify-center gap-3">
-                        <i class="fas fa-play text-sm text-brand-400"></i>
-                        شاهد العرض التقني
-                    </button>
-                </div>
+        render.innerHTML = `<h1 style="color:var(--gold); margin-bottom:40px;">${activeSurah.name}</h1>`;
+        data.data.ayahs.forEach(a => {
+            const span = document.createElement('span');
+            span.className = `ayah-unit ${mode === 'mem' ? 'is-hidden' : ''}`;
+            span.innerHTML = `${a.text} <b style="color:var(--primary)">(${a.numberInSurah})</b> `;
+            span.onclick = () => {
+                if(mode === 'mem') span.classList.toggle('is-hidden');
+                else getTafsir(activeSurah.number, a.numberInSurah);
+            };
+            render.appendChild(span);
+        });
+    }
 
-                <div class="pt-20 flex flex-wrap justify-center gap-10 opacity-40 grayscale hover:grayscale-0 transition duration-700">
-                    <div class="flex items-center gap-2 text-xl font-bold font-jakarta uppercase tracking-widest"><i class="fab fa-nvidia"></i> NVIDIA</div>
-                    <div class="flex items-center gap-2 text-xl font-bold font-jakarta uppercase tracking-widest"><i class="fab fa-aws"></i> AWS CLOUD</div>
-                    <div class="flex items-center gap-2 text-xl font-bold font-jakarta uppercase tracking-widest"><i class="fab fa-google"></i> DEEPMIND</div>
-                    <div class="flex items-center gap-2 text-xl font-bold font-jakarta uppercase tracking-widest"><i class="fab fa-github"></i> GITHUB</div>
-                </div>
+    function renderReciters(list) {
+        const listDiv = document.getElementById('reciters-list');
+        listDiv.innerHTML = list.map(r => `
+            <div class="reciter-item" onclick="showNarrations(${r.id})">
+                <span>الشيخ: ${r.name}</span>
+                <button style="background:var(--gold); color:white; border:none; padding:5px 10px; border-radius:5px;">عرض</button>
             </div>
-        </div>
-    </section>
+        `).join('');
+    }
 
-    <section id="dashboard" class="py-32 relative">
-        <div class="container mx-auto px-6">
-            <div class="max-w-6xl mx-auto glass p-2 rounded-[3rem] border-white/5 shadow-[0_0_100px_-20px_rgba(99,102,241,0.2)]">
-                <div class="bg-dark/50 rounded-[2.5rem] overflow-hidden">
-                    <div class="border-b border-white/5 p-6 flex justify-between items-center bg-white/5">
-                        <div class="flex gap-2">
-                            <div class="w-3 h-3 rounded-full bg-red-500/50"></div>
-                            <div class="w-3 h-3 rounded-full bg-yellow-500/50"></div>
-                            <div class="w-3 h-3 rounded-full bg-green-500/50"></div>
-                        </div>
-                        <div class="bg-dark rounded-full px-4 py-1 text-[10px] text-white/30 font-bold uppercase tracking-widest border border-white/5">
-                            Nexus v4.2 // Neural Engine Active
-                        </div>
-                    </div>
-                    
-                    <div class="grid lg:grid-cols-[250px_1fr] min-h-[600px]">
-                        <div class="border-l border-white/5 p-6 hidden lg:block space-y-8 bg-white/[0.02]">
-                            <div class="space-y-4">
-                                <div class="h-8 w-full bg-brand-500/20 rounded-lg flex items-center px-3 border border-brand-500/20">
-                                    <div class="w-3 h-3 rounded-full bg-brand-500 ml-2"></div>
-                                    <div class="h-2 w-20 bg-brand-500/40 rounded"></div>
-                                </div>
-                                <div class="h-8 w-full bg-white/5 rounded-lg flex items-center px-3">
-                                    <div class="w-3 h-3 rounded-full bg-white/20 ml-2"></div>
-                                    <div class="h-2 w-16 bg-white/10 rounded"></div>
-                                </div>
-                                <div class="h-8 w-full bg-white/5 rounded-lg flex items-center px-3">
-                                    <div class="w-3 h-3 rounded-full bg-white/20 ml-2"></div>
-                                    <div class="h-2 w-24 bg-white/10 rounded"></div>
-                                </div>
-                            </div>
-                            <div class="pt-20">
-                                <div class="bg-gradient-to-br from-brand-600 to-accent p-4 rounded-2xl text-white text-center">
-                                    <p class="text-[10px] font-900 uppercase mb-2">PRO Plan Active</p>
-                                    <p class="text-[8px] opacity-80 mb-3 leading-tight">You have 128k context tokens remaining.</p>
-                                    <button class="bg-white text-dark text-[10px] font-bold px-4 py-2 rounded-lg w-full">Manage Subscription</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="p-8 space-y-8 relative overflow-hidden" x-data="{ chat: true }">
-                            <div class="flex items-center justify-between mb-10">
-                                <h4 class="text-white font-bold">معالج البيانات الذكي</h4>
-                                <div class="flex gap-2">
-                                    <div class="px-3 py-1 bg-brand-500/10 text-brand-400 text-[10px] font-bold rounded-md border border-brand-500/20 uppercase tracking-tighter">Model: X-Alpha</div>
-                                    <div class="px-3 py-1 bg-green-500/10 text-green-400 text-[10px] font-bold rounded-md border border-green-500/20 uppercase tracking-tighter">Status: 99.9% Acc</div>
-                                </div>
-                            </div>
-                            
-                            <div class="space-y-6">
-                                <div class="flex gap-4 items-start animate-float">
-                                    <div class="w-8 h-8 rounded-lg bg-brand-500 flex items-center justify-center shrink-0"><i class="fas fa-user text-white text-xs"></i></div>
-                                    <div class="bg-white/5 p-4 rounded-2xl rounded-tr-none text-sm leading-relaxed max-w-md">
-                                        أريد تحليل اتجاهات السوق في الربع الثالث من عام 2026 مقارنة بالسنوات الخمس الماضية.
-                                    </div>
-                                </div>
-                                <div class="flex gap-4 items-start flex-row-reverse">
-                                    <div class="w-8 h-8 rounded-lg bg-accent flex items-center justify-center shrink-0 shadow-lg shadow-accent/20"><i class="fas fa-robot text-white text-xs"></i></div>
-                                    <div class="bg-brand-500/10 border border-brand-500/20 p-5 rounded-2xl rounded-tl-none text-sm leading-relaxed max-w-lg">
-                                        <p class="mb-4 text-white font-bold">جاري معالجة 1.2 تيرابايت من البيانات...</p>
-                                        <div class="space-y-3">
-                                            <div class="flex justify-between items-center">
-                                                <span class="text-[10px] text-slate-500">Analysis Progress</span>
-                                                <span class="text-[10px] text-brand-400 font-bold">100%</span>
-                                            </div>
-                                            <div class="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                                                <div class="bg-brand-500 h-full w-full shadow-[0_0_10px_rgba(99,102,241,1)]"></div>
-                                            </div>
-                                        </div>
-                                        <div class="mt-6 grid grid-cols-2 gap-4">
-                                            <div class="bg-dark/50 p-3 rounded-xl border border-white/5">
-                                                <p class="text-[10px] text-slate-500 uppercase">Growth Rate</p>
-                                                <p class="text-lg font-bold text-green-400">+42.5%</p>
-                                            </div>
-                                            <div class="bg-dark/50 p-3 rounded-xl border border-white/5">
-                                                <p class="text-[10px] text-slate-500 uppercase">Confidence</p>
-                                                <p class="text-lg font-bold text-brand-400">99.8%</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="absolute inset-0 pointer-events-none opacity-20">
-                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent -translate-x-full animate-shimmer"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    function filterReciters() {
+        const query = normalizeText(document.getElementById('reciter-search').value);
+        const filtered = reciters.filter(r => normalizeText(r.name).includes(query));
+        renderReciters(filtered.slice(0, 50));
+    }
+
+    function showNarrations(id) {
+        const r = reciters.find(x => x.id === id);
+        const listDiv = document.getElementById('reciters-list');
+        document.getElementById('l-title').innerText = "روايات " + r.name;
+        listDiv.innerHTML = r.moshaf.map(m => `
+            <div class="reciter-item" onclick="playAudio('${m.server}', '${m.surah_list}', '${r.name}', '${m.name}')">
+                <span>${m.name}</span>
+                <button style="background:var(--primary); color:white; border:none; padding:5px 10px; border-radius:5px;">تشغيل ▶</button>
             </div>
-        </div>
-    </section>
+        `).join('') + `<button onclick="launch('listen')" style="grid-column: 1/-1; padding:15px; border-radius:15px; background:#ddd; border:none; cursor:pointer;">العودة للقراء</button>`;
+    }
 
-    <section id="features" class="py-32 relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-24">
-                <h2 class="text-brand-500 font-900 tracking-[0.2em] uppercase text-sm mb-4">القدرات الأساسية</h2>
-                <h3 class="text-4xl md:text-6xl font-900 text-white leading-tight">نظام عصبي متكامل لكل ما تحتاجه</h3>
-                <p class="text-slate-400 mt-6 text-lg">لقد قمنا بتدريب Nexus على تريليونات البيانات ليكون رفيقك في البرمجة، التصميم، والتحليل.</p>
-            </div>
+    // إدارة الصوت المتقدمة
+    const audio = document.getElementById('audio-engine');
+    const seekSlider = document.getElementById('seek-slider');
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="group p-10 glass rounded-[3rem] hover:bg-brand-500/5 transition duration-500 border-white/5 hover:border-brand-500/30">
-                    <div class="w-16 h-16 bg-brand-500/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition duration-500">
-                        <i class="fas fa-terminal text-2xl"></i>
-                    </div>
-                    <h4 class="text-2xl font-800 text-white mb-4">البرمجة العصبية</h4>
-                    <p class="text-slate-400 leading-relaxed">كتابة كود نظيف، تصحيح الأخطاء المعقدة، وبناء هياكل برمجية كاملة لأكثر من 30 لغة برمجة بذكاء بشري.</p>
-                </div>
-                <div class="group p-10 glass rounded-[3rem] hover:bg-secondary/5 transition duration-500 border-white/5 hover:border-secondary/30">
-                    <div class="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-secondary group-hover:text-white transition duration-500">
-                        <i class="fas fa-palette text-2xl"></i>
-                    </div>
-                    <h4 class="text-2xl font-800 text-white mb-4">التصميم الفائق</h4>
-                    <p class="text-slate-400 leading-relaxed">تحويل النصوص والأوصاف إلى واجهات مستخدم (UI) احترافية وتصاميم جرافيك بدقة 8K ومستويات تباين مذهلة.</p>
-                </div>
-                <div class="group p-10 glass rounded-[3rem] hover:bg-accent/5 transition duration-500 border-white/5 hover:border-accent/30">
-                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-accent group-hover:text-white transition duration-500">
-                        <i class="fas fa-chart-line text-2xl"></i>
-                    </div>
-                    <h4 class="text-2xl font-800 text-white mb-4">تحليل السوق</h4>
-                    <p class="text-slate-400 leading-relaxed">قراءة جداول البيانات الضخمة، استخلاص التقارير المالية، والتنبؤ باتجاهات السوق المستقبلية بدقة متناهية.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    function playAudio(server, list, name, moshaf) {
+        const sNum = activeSurah.number.toString().padStart(3, '0');
+        if(!list.split(',').includes(activeSurah.number.toString())) { alert("السورة غير متوفرة"); return; }
+        
+        const fileUrl = `${server}${sNum}.mp3`;
+        audio.src = fileUrl;
+        document.getElementById('p-name').innerText = name;
+        document.getElementById('p-desc').innerText = "سورة " + activeSurah.name + " - " + moshaf;
+        document.getElementById('download-link').href = fileUrl;
+        document.getElementById('player-bar').style.display = 'block';
+        audio.play();
+    }
 
-    <section id="pricing" class="py-32 bg-[#020617] relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-20 space-y-6">
-                <h2 class="text-4xl md:text-6xl font-900 text-white tracking-tighter italic">استثمر في <span class="text-brand-500">عبقريتك</span></h2>
-                <p class="text-slate-400 text-lg">باقات مرنة مصممة للأفراد، الفرق، والشركات العملاقة.</p>
-                
-                <div class="flex items-center justify-center gap-6 mt-12">
-                    <span :class="billing === 'monthly' ? 'text-white' : 'text-slate-500'" class="text-sm font-bold transition">شهرياً</span>
-                    <button @click="billing = billing === 'monthly' ? 'yearly' : 'monthly'" class="w-16 h-8 bg-white/5 rounded-full p-1 relative border border-white/10">
-                        <div :class="billing === 'yearly' ? 'translate-x-0' : 'translate-x-8'" class="w-6 h-6 bg-brand-500 rounded-full transition-transform duration-300 shadow-lg shadow-brand-500/50"></div>
-                    </button>
-                    <span :class="billing === 'yearly' ? 'text-white' : 'text-slate-500'" class="text-sm font-bold transition flex items-center gap-2">
-                        سنوياً 
-                        <span class="bg-green-500/10 text-green-400 text-[10px] px-2 py-1 rounded-md border border-green-500/20 tracking-tighter">وفر 30%</span>
-                    </span>
-                </div>
-            </div>
+    audio.ontimeupdate = () => {
+        const current = audio.currentTime;
+        const duration = audio.duration;
+        seekSlider.value = (current / duration) * 100 || 0;
+        document.getElementById('current-time').innerText = formatTime(current);
+        if(duration) document.getElementById('total-duration').innerText = formatTime(duration);
+    };
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="glass p-10 rounded-[3rem] flex flex-col border-white/5 hover:border-white/20 transition-all duration-500">
-                    <div class="mb-8">
-                        <h4 class="text-xl font-800 text-white mb-2">المستكشف</h4>
-                        <p class="text-xs text-slate-500">مثالي للتجارب الأولية</p>
-                    </div>
-                    <div class="mb-10">
-                        <span class="text-5xl font-900 text-white">$0</span>
-                        <span class="text-slate-500 text-xs">/للأبد</span>
-                    </div>
-                    <ul class="space-y-4 mb-12 flex-grow">
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> 10 محاولات يومياً</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> موديل X-Lite الأساسي</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> وصول للمجتمع العام</li>
-                        <li class="flex items-center gap-3 text-sm opacity-30"><i class="fas fa-times"></i> تحليل الملفات الضخمة</li>
-                        <li class="flex items-center gap-3 text-sm opacity-30"><i class="fas fa-times"></i> وصول API مفتوح</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-2xl border border-white/10 text-white font-bold hover:bg-white/5 transition">بدء الآن</button>
-                </div>
+    seekSlider.oninput = () => {
+        const time = (seekSlider.value * audio.duration) / 100;
+        audio.currentTime = time;
+    };
 
-                <div class="glass p-10 rounded-[3rem] flex flex-col border-white/5 hover:border-white/20 transition-all duration-500">
-                    <div class="mb-8">
-                        <h4 class="text-xl font-800 text-white mb-2">المحترف (Plus)</h4>
-                        <p class="text-xs text-slate-500">للمستقلين وصناع المحتوى</p>
-                    </div>
-                    <div class="mb-10">
-                        <span class="text-5xl font-900 text-white" x-text="billing === 'monthly' ? '$29' : '$19'"></span>
-                        <span class="text-slate-500 text-xs">/شهر</span>
-                    </div>
-                    <ul class="space-y-4 mb-12 flex-grow">
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> 1000 محاولة يومياً</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> موديل X-Alpha المتقدم</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> تحليل ملفات (حتى 50MB)</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-check text-brand-500"></i> دعم فني سريع</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition">ترقية الآن</button>
-                </div>
+    function formatTime(secs) {
+        const min = Math.floor(secs / 60);
+        const sec = Math.floor(secs % 60);
+        return `${min}:${sec < 10 ? '0' + sec : sec}`;
+    }
 
-                <div class="pro-border p-[3px] rounded-[3.1rem] shadow-[0_0_80px_-20px_rgba(99,102,241,0.4)] transform scale-105 z-20 relative overflow-hidden group">
-                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-500 blur-3xl opacity-20 group-hover:opacity-40 transition duration-700"></div>
-                    <div class="bg-surface p-10 rounded-[3rem] flex flex-col h-full relative z-10">
-                        <div class="absolute top-8 left-8">
-                            <span class="bg-brand-500 text-white text-[10px] font-900 uppercase px-3 py-1 rounded-full tracking-widest shadow-xl shadow-brand-500/20 animate-pulse">الأكثر طلباً</span>
-                        </div>
-                        <div class="mb-8">
-                            <h4 class="text-2xl font-900 text-white mb-2">النخبة (PRO)</h4>
-                            <p class="text-xs text-brand-400 font-bold uppercase tracking-widest">للقوة القصوى والأعمال الكبيرة</p>
-                        </div>
-                        <div class="mb-10">
-                            <span class="text-6xl font-900 text-white tracking-tighter" x-text="billing === 'monthly' ? '$79' : '$49'"></span>
-                            <span class="text-slate-400 text-xs">/شهر</span>
-                        </div>
-                        <ul class="space-y-5 mb-12 flex-grow">
-                            <li class="flex items-center gap-3 text-sm font-bold text-white"><i class="fas fa-star text-brand-400 animate-spin-slow"></i> محاولات غير محدودة</li>
-                            <li class="flex items-center gap-3 text-sm text-white"><i class="fas fa-check text-brand-500"></i> موديل X-Nexus (الأقوى عالمياً)</li>
-                            <li class="flex items-center gap-3 text-sm text-white"><i class="fas fa-check text-brand-500"></i> نافذة سياق 128k (كتب كاملة)</li>
-                            <li class="flex items-center gap-3 text-sm text-white"><i class="fas fa-check text-brand-500"></i> توليد صور وفيديو بدقة 8K</li>
-                            <li class="flex items-center gap-3 text-sm text-white"><i class="fas fa-check text-brand-500"></i> وصول مبكر للميزات التجريبية</li>
-                            <li class="flex items-center gap-3 text-sm text-white"><i class="fas fa-check text-brand-500"></i> دعم VIP مخصص 24/7</li>
-                        </ul>
-                        <button class="w-full py-5 rounded-2xl bg-gradient-to-r from-brand-600 to-secondary text-white font-900 text-xl hover:scale-105 transition shadow-2xl shadow-brand-600/30">
-                            امتلك القوة الآن
-                        </button>
-                    </div>
-                </div>
+    function toggleAudio() { audio.paused ? audio.play() : audio.pause(); }
+    audio.onplay = () => document.getElementById('master-play').innerText = "⏸";
+    audio.onpause = () => document.getElementById('master-play').innerText = "▶";
 
-                <div class="glass p-10 rounded-[3rem] flex flex-col border-white/5 opacity-80 hover:opacity-100 transition-all duration-500">
-                    <div class="mb-8">
-                        <h4 class="text-xl font-800 text-white mb-2">المؤسسات</h4>
-                        <p class="text-xs text-slate-500">حلول مخصصة للشركات</p>
-                    </div>
-                    <div class="mb-10">
-                        <span class="text-3xl font-900 text-white">تخصيص</span>
-                    </div>
-                    <ul class="space-y-4 mb-12 flex-grow">
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-building text-brand-500"></i> خوادم محلية مخصصة</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-lock text-brand-500"></i> أمان وحوكمة بيانات متقدمة</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-users text-brand-500"></i> إدارة فريق غير محدودة</li>
-                        <li class="flex items-center gap-3 text-sm"><i class="fas fa-code-merge text-brand-500"></i> تخصيص API عميق</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-2xl border border-white/10 text-white font-bold hover:bg-white/5 transition">تحدث مع المبيعات</button>
-                </div>
-            </div>
-        </div>
-    </section>
+    // الوظائف المساعدة
+    async function getTafsir(sNum, aNum) {
+        const textElement = document.getElementById('tafsir-text');
+        textElement.innerText = "جاري جلب التفسير...";
+        document.getElementById('tafsir-panel').classList.add('active');
+        try {
+            const res = await fetch(`https://api.alquran.cloud/v1/ayah/${sNum}:${aNum}/ar.jalalayn`);
+            const data = await res.json();
+            textElement.innerText = data.data.text;
+        } catch (e) { textElement.innerText = "عذراً، تعذر جلب التفسير."; }
+    }
 
-    <section id="comparison" class="py-32 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-900 text-white text-center mb-20">مقارنة تفصيلية للميزات</h2>
-            <div class="max-w-5xl mx-auto overflow-x-auto glass rounded-[2.5rem] border-white/5">
-                <table class="w-full text-right">
-                    <thead>
-                        <tr class="border-b border-white/5">
-                            <th class="p-8 text-white font-900">الميزة التقنية</th>
-                            <th class="p-8 text-slate-500">المجاني</th>
-                            <th class="p-8 text-brand-400">PRO</th>
-                            <th class="p-8 text-slate-500">Enterprise</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm">
-                        <tr class="border-b border-white/[0.02] hover:bg-white/[0.02] transition">
-                            <td class="p-8 text-white font-700">سرعة الاستجابة</td>
-                            <td class="p-8">عادية</td>
-                            <td class="p-8 text-brand-400 font-bold">فائقة (Turbo)</td>
-                            <td class="p-8">فائقة (Dedicated)</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.02] hover:bg-white/[0.02] transition">
-                            <td class="p-8 text-white font-700">سعة الذاكرة (Context)</td>
-                            <td class="p-8">4k Tokens</td>
-                            <td class="p-8 text-brand-400 font-bold">128k Tokens</td>
-                            <td class="p-8">1M+ Tokens</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.02] hover:bg-white/[0.02] transition">
-                            <td class="p-8 text-white font-700">توليد الصور</td>
-                            <td class="p-8">محدود (SD 1.5)</td>
-                            <td class="p-8 text-brand-400 font-bold">Nexus Gen-3</td>
-                            <td class="p-8">مخصص (Custom Fine-tune)</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.02] hover:bg-white/[0.02] transition">
-                            <td class="p-8 text-white font-700">دعم لغات البرمجة</td>
-                            <td class="p-8">أكثر 5 لغات</td>
-                            <td class="p-8 text-brand-400 font-bold">جميع لغات العالم</td>
-                            <td class="p-8">جميع اللغات + Legacy</td>
-                        </tr>
-                        <tr class="border-b border-white/[0.02] hover:bg-white/[0.02] transition">
-                            <td class="p-8 text-white font-700">أمن البيانات</td>
-                            <td class="p-8 text-xs italic">مشترك</td>
-                            <td class="p-8 text-brand-400 font-bold">تشفير عسكري (AES-256)</td>
-                            <td class="p-8">أمن سيادي مخصص</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
+    function closeTafsir() { document.getElementById('tafsir-panel').classList.remove('active'); }
+    function toggleTheme() { document.body.classList.toggle('dark-mode'); }
+    function exitView() { clearInterval(scrollInterval); location.reload(); }
+    function initScroll() {
+        clearInterval(scrollInterval);
+        const speed = document.getElementById('scroll-speed').value;
+        if(speed > 0) scrollInterval = setInterval(() => { document.getElementById('quran-viewer').scrollBy(0, 1); }, 100 / speed);
+    }
 
-    <section id="faq" class="py-32 relative overflow-hidden" x-data="{ active: 1 }">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <div class="text-center mb-20">
-                <h2 class="text-4xl md:text-5xl font-900 text-white mb-6">هل لديك تساؤلات؟</h2>
-                <p class="text-slate-500">كل ما تحتاج معرفته عن قوة Nexus في مكان واحد.</p>
-            </div>
-            
-            <div class="space-y-4">
-                <div class="glass rounded-[2rem] overflow-hidden border-white/5">
-                    <button @click="active = active === 1 ? null : 1" class="w-full px-8 py-6 flex justify-between items-center text-right group">
-                        <span class="text-xl font-bold text-white group-hover:text-brand-400 transition" :class="active === 1 ? 'text-brand-400' : ''">ما الذي يجعل Nexus مختلفاً عن المنافسين؟</span>
-                        <i class="fas fa-chevron-down text-sm transition-transform duration-500" :class="active === 1 ? 'rotate-180 text-brand-400' : 'text-slate-600'"></i>
-                    </button>
-                    <div x-show="active === 1" x-collapse class="px-8 pb-8 text-slate-400 leading-relaxed italic">
-                        Nexus يعتمد على معمارية هجينة تجمع بين نماذج المحولات (Transformers) والخوارزميات التطورية، مما يمنحه قدرة على التفكير المنطقي بعمق أكبر بـ 5 مرات من النماذج التقليدية، خاصة في حل المشكلات البرمجية والتحليل المالي.
-                    </div>
-                </div>
-                <div class="glass rounded-[2rem] overflow-hidden border-white/5">
-                    <button @click="active = active === 2 ? null : 2" class="w-full px-8 py-6 flex justify-between items-center text-right group">
-                        <span class="text-xl font-bold text-white group-hover:text-brand-400 transition" :class="active === 2 ? 'text-brand-400' : ''">هل بياناتي في مأمن عند استخدام باقة البرو؟</span>
-                        <i class="fas fa-chevron-down text-sm transition-transform duration-500" :class="active === 2 ? 'rotate-180 text-brand-400' : 'text-slate-600'"></i>
-                    </button>
-                    <div x-show="active === 2" x-collapse class="px-8 pb-8 text-slate-400 leading-relaxed italic text-right font-medium">
-                        نحن نلتزم ببروتوكولات خصوصية صارمة جداً. في باقة الـ PRO، يتم فصل بياناتك تماماً عن نماذج التدريب العامة، كما يتم تشفير جميع المحادثات والملفات المرفوعة بنظام التشفير من طرف لآخر (End-to-End Encryption).
-                    </div>
-                </div>
-                <div class="glass rounded-[2rem] overflow-hidden border-white/5">
-                    <button @click="active = active === 3 ? null : 3" class="w-full px-8 py-6 flex justify-between items-center text-right group">
-                        <span class="text-xl font-bold text-white group-hover:text-brand-400 transition" :class="active === 3 ? 'text-brand-400' : ''">هل يمكنني دمج Nexus في تطبيقاتي الخاصة؟</span>
-                        <i class="fas fa-chevron-down text-sm transition-transform duration-500" :class="active === 3 ? 'rotate-180 text-brand-400' : 'text-slate-600'"></i>
-                    </button>
-                    <div x-show="active === 3" x-collapse class="px-8 pb-8 text-slate-400 leading-relaxed italic text-right font-medium">
-                        نعم بالتأكيد! نحن نوفر واجهة برمجة تطبيقات (API) قوية جداً وسهلة الدمج، متوفرة للمشتركين في باقتي PRO و Enterprise، مع وثائق تقنية (Documentation) شاملة تدعم جميع لغات البرمجة.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-32 relative">
-        <div class="container mx-auto px-6">
-            <div class="relative glass rounded-[4rem] p-12 lg:p-24 overflow-hidden border-brand-500/20 text-center space-y-10">
-                <div class="absolute -top-24 -left-24 w-96 h-96 bg-brand-500/20 rounded-full blur-[100px]"></div>
-                <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/10 rounded-full blur-[100px]"></div>
-                
-                <h2 class="text-4xl lg:text-7xl font-900 text-white leading-tight max-w-4xl mx-auto">هل أنت مستعد لمقابلة <br> <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-accent">مستقبلك الرقمي؟</span></h2>
-                <p class="text-xl text-slate-400 max-w-2xl mx-auto italic">انضم إلى أكثر من 2 مليون مستخدم حول العالم يثقون في AI-X Nexus يومياً.</p>
-                
-                <div class="flex flex-col sm:flex-row justify-center gap-6 relative z-10">
-                    <button class="bg-white text-dark px-14 py-6 rounded-3xl text-2xl font-900 hover:bg-brand-500 hover:text-white transition shadow-2xl shadow-white/5">ابدأ مجاناً الآن</button>
-                    <button class="glass px-14 py-6 rounded-3xl text-2xl font-800 text-white hover:bg-white/5 transition border-white/10">تواصل مع مستشارينا</button>
-                </div>
-                
-                <div class="pt-10 flex flex-wrap justify-center gap-6 items-center">
-                    <div class="flex items-center gap-2 text-yellow-500"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <span class="text-white font-bold text-sm tracking-widest uppercase italic">توصية بنسبة 4.9/5 على G2 & Capterra</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-dark border-t border-white/5 pt-24 pb-12 overflow-hidden">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-20 mb-20">
-                <div class="lg:col-span-2 space-y-10">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center"><i class="fas fa-brain text-white"></i></div>
-                        <span class="text-2xl font-900 text-white tracking-tighter uppercase font-jakarta">AI-X <span class="text-brand-500">Nexus</span></span>
-                    </div>
-                    <p class="text-slate-500 max-w-sm text-lg leading-relaxed">بناء الجسور بين الخيال البشري والقدرات الحاسوبية اللانهائية. نحن نعيد تعريف الذكاء.</p>
-                    <div class="flex gap-6">
-                        <a href="#" class="w-12 h-12 glass rounded-2xl flex items-center justify-center hover:bg-brand-500 hover:text-white transition duration-500 text-xl"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="w-12 h-12 glass rounded-2xl flex items-center justify-center hover:bg-brand-500 hover:text-white transition duration-500 text-xl"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="w-12 h-12 glass rounded-2xl flex items-center justify-center hover:bg-brand-500 hover:text-white transition duration-500 text-xl"><i class="fab fa-discord"></i></a>
-                    </div>
-                </div>
-                
-                <div class="space-y-8">
-                    <h5 class="text-white font-900 text-sm tracking-[0.2em] uppercase">المنتج</h5>
-                    <ul class="space-y-5 text-slate-500 text-sm font-bold tracking-wide">
-                        <li><a href="#" class="hover:text-brand-400 transition">محرك البحث</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">توليد الأكواد</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">المكتبة العصبية</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">API Nexus</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-8">
-                    <h5 class="text-white font-900 text-sm tracking-[0.2em] uppercase">الشركة</h5>
-                    <ul class="space-y-5 text-slate-500 text-sm font-bold tracking-wide">
-                        <li><a href="#" class="hover:text-brand-400 transition">عن الشركة</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">المهن <span class="bg-brand-500/10 text-brand-400 px-2 py-0.5 rounded text-[8px] mr-2 tracking-tighter uppercase">Hiring</span></a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">الأخبار</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">تواصل معنا</a></li>
-                    </ul>
-                </div>
-
-                <div class="space-y-8">
-                    <h5 class="text-white font-900 text-sm tracking-[0.2em] uppercase">قانوني</h5>
-                    <ul class="space-y-5 text-slate-500 text-sm font-bold tracking-wide">
-                        <li><a href="#" class="hover:text-brand-400 transition">الخصوصية</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">شروط الخدمة</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">أمن البيانات</a></li>
-                        <li><a href="#" class="hover:text-brand-400 transition">سياسة الكوكيز</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-10">
-                <p class="text-slate-600 text-[10px] font-bold tracking-[0.3em] uppercase italic">جميع الحقوق محفوظة © 2026 AI-X Nexus Global. تم التصميم بواسطة العبقرية الرقمية.</p>
-                <div class="flex items-center gap-10">
-                    <div class="flex items-center gap-2 text-slate-500 hover:text-white transition cursor-pointer font-bold text-[10px] uppercase tracking-widest"><i class="fas fa-globe"></i> العربية</div>
-                    <div class="flex items-center gap-2 text-slate-500 hover:text-white transition cursor-pointer font-bold text-[10px] uppercase tracking-widest"><i class="fas fa-moon"></i> Dark Mode Only</div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <button @click="window.scrollTo(0,0)" x-show="scrolled" x-transition x-cloak class="fixed bottom-10 right-10 w-14 h-14 glass rounded-2xl flex items-center justify-center text-white z-[2000] hover:bg-brand-500 transition shadow-2xl shadow-brand-500/20">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
+    startApp();
+</script>
 </body>
 </html>
