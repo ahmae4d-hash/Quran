@@ -1,9 +1,9 @@
 {
-  "name": "القرآن الكريم الشامل",
+  "name": "القرآن الكريم المبسط",
   "short_name": "القرآن",
   "description": "قراءة واستماع وحفظ القرآن الكريم",
-  "start_url": "/Quran-kareem/",
-  "scope": "/Quran-kareem/",
+  "start_url": "/Quran/",
+  "scope": "/Quran/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#0d1117",
